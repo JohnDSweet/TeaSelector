@@ -1,10 +1,7 @@
-#firstJumbo {
+.firstJumbo {
   background-color: coral;
   color: white;
 }
-#result {
-  display: none;
-}
-#resultTag {
+#answer {
   display: none;
 }

@@ -78,33 +78,33 @@ var teaSelector = function(type, caffeine, tone, flavors) {
     name = teaH0L.name;
     link = teaH0L.link;
   }
-  $("#answer").empty();
-  $("#answer").append("You should try our " + name + "!</h1><br><a href=\"" + link + "\"><h6>click here to buy!</h6></a><h1>");
 };
 
 $(document).ready(function(){
   $("form#teaSurvey").submit(function(event){
     event.preventDefault();
-    $("#result").empty();
-
     var type = $("input:radio[name=type]:checked").val();
     var caffeine = $("input:radio[name=caffeine]:checked").val();
     var tone = $("input:radio[name=tone]:checked").val();
-
-    if (tone === "earthy") {
-      $('#result').append("An " + tone + " " + type + " tea with " + caffeine + " caffeine and the following flavors:" + "<br>");
-    } else if (tone === "light"){
-      $('#result').append("A " + tone + " " + type + " tea with " + caffeine + " caffeine and the following flavors:" + "<br>");
-    }
     var flavors = [];
-    $("input:checkbox[name=flavor]:checked").each(function(){
-      var flavor = $(this).val();
-      flavors.push(flavor);
-      $('#result').append("* " + flavor + "<br>");
-    });
-    $("#resultTag").show();
-    $("#result").show();
+    var flavor = "";
 
     teaSelector(type, caffeine, tone, flavors);
+    
+    $("#intro").hide();
+    $("#answer").show();
+    $("#answer").empty();
+    if (tone === "earthy") {
+      $('#answer').append("Because you asked for an " + tone + " " + type + " tea with " + caffeine + " caffeine and the following flavors:" + "<br>");
+    } else if (tone === "light"){
+      $('#answer').append("Because you asked for a " + tone + " " + type + " tea with " + caffeine + " caffeine and the following flavors:" + "<br>");
+    }
+    $("input:checkbox[name=flavor]:checked").each(function(){
+      flavor = $(this).val();
+      flavors.push(flavor);
+      $('#answer').append("* " + flavor + "<br>");
+    });
+    $("#answer").append("<h1>You should try our " + name + "!</h1>");
+    $("#answer").append("<a href=\"" + link + "\">click here to buy!</a>");
   });
 });
