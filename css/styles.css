@@ -1,0 +1,10 @@
+#firstJumbo {
+  background-color: coral;
+  color: white;
+}
+#result {
+  display: none;
+}
+#resultTag {
+  display: none;
+}
